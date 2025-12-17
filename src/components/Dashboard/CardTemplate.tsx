@@ -12,7 +12,7 @@ export default function CardTemplate({
   titleLabel: string;
   buttonLabel: string;
   buttonClickPath: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
     <div className="bg-white text-black w-full rounded-[12px] p-[24px]">

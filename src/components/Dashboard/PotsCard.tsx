@@ -32,28 +32,27 @@ export default function PotsCard() {
       titleLabel="Pots"
       buttonLabel="See Details"
       buttonClickPath="/pots"
-      children={
-        <div className="mt-[20px] flex flex-row gap-[20px]">
-          <div className="w-1/2 rounded-[12px] bg-[#F8F4F0] p-[16px] flex flex-row gap-[16px]">
-            <Image
-              src="/images/icon-pot.svg"
-              alt="Money jar"
-              width="40"
-              height="40"
-            />
-            <div>
-              <p className="text-[#696868] text-preset-4">Total Saved</p>
-              <p className="text-preset-1 mt-[12px]">${totalSaved}</p>
-            </div>
-          </div>
-
-          <div className="w-1/2 grid grid-rows-2 grid-flow-col gap-[16px]">
-            {pots.slice(0, 4).map((s) => (
-              <PotSection key={s.name} section={s} />
-            ))}
+    >
+      <div className="mt-[20px] flex flex-row gap-[20px]">
+        <div className="w-1/2 rounded-[12px] bg-[#F8F4F0] p-[16px] flex flex-row gap-[16px]">
+          <Image
+            src="/images/icon-pot.svg"
+            alt="Money jar"
+            width="40"
+            height="40"
+          />
+          <div>
+            <p className="text-[#696868] text-preset-4">Total Saved</p>
+            <p className="text-preset-1 mt-[12px]">${totalSaved}</p>
           </div>
         </div>
-      }
-    />
+
+        <div className="w-1/2 grid grid-rows-2 grid-flow-col gap-[16px]">
+          {pots.slice(0, 4).map((s) => (
+            <PotSection key={s.name} section={s} />
+          ))}
+        </div>
+      </div>
+    </CardTemplate>
   );
 }

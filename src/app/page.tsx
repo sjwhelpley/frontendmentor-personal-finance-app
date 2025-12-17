@@ -40,14 +40,12 @@ export default function Home() {
           titleLabel="Budgets"
           buttonLabel="See Details"
           buttonClickPath="/budgets"
-          children={<></>}
         />
         <div className="mt-[24px]">
           <CardTemplate
             titleLabel="Recurring Bills"
             buttonLabel="See Details"
             buttonClickPath="/bills"
-            children={<></>}
           />
         </div>
       </div>

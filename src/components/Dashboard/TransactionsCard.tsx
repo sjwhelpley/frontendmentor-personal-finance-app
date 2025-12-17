@@ -65,19 +65,14 @@ export default function TransactionsCard() {
       titleLabel="Transactions"
       buttonLabel="View All"
       buttonClickPath="/transactions"
-      children={
-        <div className="mt-[20px]">
-          <div className="w-full">
-            {transactions.slice(0, 5).map((t, index) => (
-              <Transaction
-                key={t.date}
-                transaction={t}
-                lastItem={index === 4}
-              />
-            ))}
-          </div>
+    >
+      <div className="mt-[20px]">
+        <div className="w-full">
+          {transactions.slice(0, 5).map((t, index) => (
+            <Transaction key={t.date} transaction={t} lastItem={index === 4} />
+          ))}
         </div>
-      }
-    />
+      </div>
+    </CardTemplate>
   );
 }

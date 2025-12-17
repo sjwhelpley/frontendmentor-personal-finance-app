@@ -19,7 +19,7 @@ function Transaction({
   lastItem: boolean;
 }) {
   const { avatar, name, category, date, amount } = transaction;
-  console.log(transaction);
+
   return (
     <div>
       <div className="flex flex-row items-center justify-between gap-[32px]">
@@ -79,8 +79,9 @@ function Transaction({
 
 export default function Transactions() {
   const { transactions } = data;
-  const [page, setPage] = useState(1);
-  const [shownTransactions, setShownTransactions] = useState(1);
+  const page = 1;
+  // const [page, setPage] = useState(1);
+  // const [shownTransactions, setShownTransactions] = useState(1);
 
   const numPerPage = 10;
 
