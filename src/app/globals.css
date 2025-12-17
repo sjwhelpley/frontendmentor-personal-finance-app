@@ -1,23 +1,63 @@
 @import "tailwindcss";
 
+
 :root {
-  --background: #F8F4F0;
-  --foreground: #171717;
+  --beige-100: #F8F4F0;
+  --beige-500: #98908B;
+  --grey-100:#F2F2F2;
+  --grey-300: #B3B3B3;
+  --grey-500: #696868;
+  --grey-900: #201F24;
+  
+  --secondary-green: #277C78;
+  --secondary-yellow: #F2CDAC;
+  --secondary-cyan: #82C9D7;
+  --secondary-navy: #626070;
+  --secondary-red: #C94736;
+  --secondary-purple: #826CB0;
+  
+  --purple: #AF81BA;
+  --turquoise: #597C7C;
+  --brown: #93674F;
+  --magenta: #934F6F;
+  --blue: #3F82B2;
+  --navy-grey: #97A0AC;
+  --army-green: #7F9161;
+  --gold: #CAB361;
+  --orange: #BE6C49;
+  
+  --background: var(--beige-100);
+  --foreground: var(--grey-900);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-secondary-green: var(--secondary-green);
+  --color-secondary-yellow: var(--secondary-yellow);
+  --color-secondary-cyan: var(--secondary-cyan);
+  --color-secondary-navy: var(--secondary-navy);
+  --color-secondary-red: var(--secondary-red);
+  --color-secondary-purple: var(--secondary-purple);
+  --color-purple: var(--purple);
+  --color-turquoise: var(--turquoise);
+  --color-brown: var(--brown);
+  --color-magenta: var(--magenta);
+  --color-blue: var(--blue);
+  --color-navy-grey: var(--navy-grey);
+  --color-army-green: var(--army-green);
+  --color-gold: var(--gold);
+  --color-orange: var(--orange);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
