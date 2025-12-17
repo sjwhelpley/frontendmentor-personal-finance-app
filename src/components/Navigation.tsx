@@ -12,25 +12,25 @@ const links = [
     url: "/",
   },
   {
-    inactiveIcon: "/images/icon-nav-overview.svg",
+    inactiveIcon: "/images/icon-nav-transactions.svg",
     activeIcon: "/images/icon-nav-overview-active.svg",
     label: "Transactions",
     url: "/transactions",
   },
   {
-    inactiveIcon: "/images/icon-nav-overview.svg",
+    inactiveIcon: "/images/icon-nav-budgets.svg",
     activeIcon: "/images/icon-nav-overview-active.svg",
     label: "Budgets",
     url: "/budgets",
   },
   {
-    inactiveIcon: "/images/icon-nav-overview.svg",
+    inactiveIcon: "/images/icon-nav-pots.svg",
     activeIcon: "/images/icon-nav-overview-active.svg",
     label: "Pots",
     url: "/pots",
   },
   {
-    inactiveIcon: "/images/icon-nav-overview.svg",
+    inactiveIcon: "/images/icon-nav-recurring-bills.svg",
     activeIcon: "/images/icon-nav-overview-active.svg",
     label: "Recurring Bills",
     url: "/bills",
@@ -52,8 +52,8 @@ function DesktopNavItem({
 
   const isActive = pathname === url;
 
-  const inactiveLabel = "text-[#B3B3B3] font-bold text-[16px]/[1.5]";
-  const activeLabel = "text-black font-bold text-[16px]/[1.5]";
+  const inactiveLabel = "text-[#B3B3B3] text-preset-3";
+  const activeLabel = "text-black text-preset-3";
 
   const inactiveItem = "border-l-4 border-black";
   const activeItem =
@@ -102,9 +102,7 @@ export default function Navigation() {
             width="24"
             height="24"
           />
-          <p className="text-[#B3B3B3] font-bold text-[16px]/[1.5]">
-            Minimize Menu
-          </p>
+          <p className="text-[#B3B3B3] text-preset-3">Minimize Menu</p>
         </li>
       </nav>
 

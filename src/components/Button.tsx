@@ -9,7 +9,7 @@ export default function Button({
 }) {
   return (
     <button
-      className="cursor-pointer text-white font-bold text-[14px] bg-black hover:bg-[#696868] rounded-md p-[16px]"
+      className="cursor-pointer text-white text-preset-4-bold bg-black hover:bg-[#696868] rounded-md p-[16px]"
       onClick={onClick}
     >
       {label}

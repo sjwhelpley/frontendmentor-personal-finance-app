@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #F8F4F0;
   --foreground: #171717;
 }
 
@@ -23,4 +23,38 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-preset-1 {
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.text-preset-2 {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.text-preset-3 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.text-preset-4 {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.text-preset-4-bold {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.text-preset-5 {
+  font-size: 12px;
+  line-height: 1.5;
 }
