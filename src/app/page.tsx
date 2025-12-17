@@ -59,26 +59,25 @@ function PotsCard() {
     <LargeCard
       titleLabel="Pots"
       buttonLabel="See Details"
-      children={
-        <div className="mt-[20px] flex flex-row gap-[20px]">
-          <div className="w-1/2 rounded-[12px] bg-[#F8F4F0] p-[16px] flex flex-row gap-[16px]">
-            <Image src={iconPots} alt="Money jar" />
-            <div>
-              <p className="text-[#696868] text-[14px]/[1.5]">Total Saved</p>
-              <p className="text-[32px]/[1.2] font-bold mt-[12px]">
-                ${totalSaved}
-              </p>
-            </div>
-          </div>
-
-          <div className="w-1/2 grid grid-rows-2 grid-flow-col gap-[16px]">
-            {pots.slice(0, 4).map((s) => (
-              <PotSection key={s.name} section={s} />
-            ))}
+    >
+      <div className="mt-[20px] flex flex-row gap-[20px]">
+        <div className="w-1/2 rounded-[12px] bg-[#F8F4F0] p-[16px] flex flex-row gap-[16px]">
+          <Image src={iconPots} alt="Money jar" />
+          <div>
+            <p className="text-[#696868] text-[14px]/[1.5]">Total Saved</p>
+            <p className="text-[32px]/[1.2] font-bold mt-[12px]">
+              ${totalSaved}
+            </p>
           </div>
         </div>
-      }
-    />
+
+        <div className="w-1/2 grid grid-rows-2 grid-flow-col gap-[16px]">
+          {pots.slice(0, 4).map((s) => (
+            <PotSection key={s.name} section={s} />
+          ))}
+        </div>
+      </div>
+    </LargeCard>
   );
 }
 
@@ -88,9 +87,9 @@ function TransactionsCard() {
   function Transaction({
     transaction,
   }: {
-    transaction: { avatar: string; name: string; date: string; amount: number };
+    transaction: { avatar: string; name: string; amount: number };
   }) {
-    const { avatar, name, date, amount } = transaction;
+    const { avatar, name, amount } = transaction;
 
     return (
       <div className="flex flex-row gap-[16px]">
@@ -108,16 +107,15 @@ function TransactionsCard() {
     <LargeCard
       titleLabel="Transactions"
       buttonLabel="View All"
-      children={
-        <div className="mt-[20px]">
-          <div className="w-full">
-            {transactions.slice(0, 5).map((t) => (
-              <Transaction key={t.date} transaction={t} />
-            ))}
-          </div>
+    >   
+      <div className="mt-[20px]">
+        <div className="w-full">
+          {transactions.slice(0, 5).map((t) => (
+            <Transaction key={t.date} transaction={t} />
+          ))}
         </div>
-      }
-    />
+      </div>
+    </LargeCard>
   );
 }
 
@@ -157,13 +155,11 @@ export default function Home() {
         <LargeCard
           titleLabel="Budgets"
           buttonLabel="See Details"
-          children={<></>}
         />
         <div className="mt-[24px]">
           <LargeCard
             titleLabel="Recurring Bills"
             buttonLabel="See Details"
-            children={<></>}
           />
         </div>
       </div>
