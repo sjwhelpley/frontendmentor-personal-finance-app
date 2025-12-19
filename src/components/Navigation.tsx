@@ -138,7 +138,7 @@ export default function Navigation() {
     <>
       <nav
         className={`hidden lg:block fixed h-screen bg-foreground rounded-tr-[12px] rounded-br-[12px] transition-all duration-300 ${
-          isMinimized ? "w-[88px]" : "w-[300px]"
+          isMinimized ? "w-[88px]" : "w-[250px]"
         }`}
       >
         {isMinimized ? (

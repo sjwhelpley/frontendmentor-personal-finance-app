@@ -3,6 +3,7 @@ import OverviewSection from "@/components/Dashboard/OverviewSection";
 import PotsCard from "@/components/Dashboard/PotsCard";
 import CardTemplate from "@/components/Dashboard/CardTemplate";
 import TransactionsCard from "@/components/Dashboard/TransactionsCard";
+import BudgetsCard from "@/components/Dashboard/BudgetsCard";
 
 export default function Home() {
   return (
@@ -17,11 +18,7 @@ export default function Home() {
       </div>
 
       <div className="col-span-12 mt-[24px] lg:mt-0 lg:col-span-5 h-fit">
-        <CardTemplate
-          titleLabel="Budgets"
-          buttonLabel="See Details"
-          buttonClickPath="/budgets"
-        />
+        <BudgetsCard />
         <div className="mt-[24px]">
           <BillsCard />
         </div>

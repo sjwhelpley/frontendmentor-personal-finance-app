@@ -15,6 +15,7 @@ export interface Transaction {
 
 export interface Budget {
   category: string;
+  spent: number;
   maximum: number;
   theme: string;
 }
