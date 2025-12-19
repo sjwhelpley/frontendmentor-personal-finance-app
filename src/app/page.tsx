@@ -1,7 +1,6 @@
 import BillsCard from "@/components/Dashboard/BillsCard";
 import OverviewSection from "@/components/Dashboard/OverviewSection";
 import PotsCard from "@/components/Dashboard/PotsCard";
-import CardTemplate from "@/components/Dashboard/CardTemplate";
 import TransactionsCard from "@/components/Dashboard/TransactionsCard";
 import BudgetsCard from "@/components/Dashboard/BudgetsCard";
 

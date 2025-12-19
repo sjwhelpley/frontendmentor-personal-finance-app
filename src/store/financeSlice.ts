@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { FinanceState } from "@/types/finance";
 import initialData from "../data.json";
 
@@ -18,4 +18,3 @@ const financeSlice = createSlice({
 
 export default financeSlice.reducer;
 export const {} = financeSlice.actions;
-
