@@ -1,9 +1,16 @@
+"use client";
+
 import Image from "next/image";
-import data from "../../data.json";
+
+import { useAppSelector } from "@/store/hooks";
+import { RootState } from "@/store/store";
+
 import CardTemplate from "./CardTemplate";
 
 export default function TransactionsCard() {
-  const { transactions } = data;
+  const transactions = useAppSelector(
+    (state: RootState) => state.finance.transactions
+  );
 
   function Transaction({
     transaction,
@@ -31,7 +38,10 @@ export default function TransactionsCard() {
           <div className="flex flex-col items-end">
             <p
               className="text-preset-4-bold"
-              style={{ color: amount < 0 ? "#201F24" : "#277C78" }}
+              style={{
+                color:
+                  amount < 0 ? "var(--grey-900)" : "var(--secondary-green)",
+              }}
             >
               {amount < 0
                 ? `-${Math.abs(amount).toLocaleString("en-US", {
@@ -43,7 +53,7 @@ export default function TransactionsCard() {
                     currency: "USD",
                   })}`}
             </p>
-            <p className="text-preset-5 text-[#696868]">
+            <p className="text-preset-5 text-grey-500">
               {new Date(date).toLocaleDateString("en-GB", {
                 day: "2-digit",
                 month: "short",
@@ -54,11 +64,13 @@ export default function TransactionsCard() {
         </div>
 
         {!lastItem && (
-          <div className="w-full border-b-1 border-[#F2F2F2] my-[20px]"></div>
+          <div className="w-full border-b-1 border-grey-100 my-[20px]" />
         )}
       </div>
     );
   }
+
+  const visibleTransactions = transactions.slice(0, 5);
 
   return (
     <CardTemplate
@@ -66,12 +78,10 @@ export default function TransactionsCard() {
       buttonLabel="View All"
       buttonClickPath="/transactions"
     >
-      <div className="mt-[20px]">
-        <div className="w-full">
-          {transactions.slice(0, 5).map((t, index) => (
-            <Transaction key={t.date} transaction={t} lastItem={index === 4} />
-          ))}
-        </div>
+      <div className="mt-[20px] w-full">
+        {visibleTransactions.map((t, index) => (
+          <Transaction key={t.date} transaction={t} lastItem={index === visibleTransactions.length - 1} />
+        ))}
       </div>
     </CardTemplate>
   );

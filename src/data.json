@@ -451,5 +451,22 @@
       "total": 531.0,
       "theme": "#826CB0"
     }
+  ],
+  "bills": [
+    {
+      "name": "Paid Bills",
+      "amount": 190.0,
+      "numberOfBills": 4
+    },
+    {
+      "name": "Total Upcoming",
+      "amount": 194.98,
+      "numberOfBills": 4
+    },
+    {
+      "name": "Due Soon",
+      "amount": 59.98,
+      "numberOfBills": 2
+    }
   ]
 }

@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { useNavigation } from "@/contexts/NavigationContext";
+
 const links = [
   {
     inactiveIcon: "/images/icon-nav-overview.svg",
@@ -39,6 +41,7 @@ const links = [
 
 function DesktopNavItem({
   item,
+  isMinimized,
 }: {
   item: {
     inactiveIcon: string;
@@ -46,23 +49,26 @@ function DesktopNavItem({
     url: string;
     label: string;
   };
+  isMinimized: boolean;
 }) {
   const { activeIcon, inactiveIcon, url, label } = item;
   const pathname = usePathname();
 
   const isActive = pathname === url;
 
-  const inactiveLabel = "text-[#B3B3B3] text-preset-3";
-  const activeLabel = "text-black text-preset-3";
+  const inactiveLabel = "text-grey-300 text-preset-3";
+  const activeLabel = "text-foreground text-preset-3";
 
-  const inactiveItem = "border-l-4 border-black";
+  const inactiveItem = "border-l-4 border-foreground";
   const activeItem =
-    "bg-white rounded-br-[12px] rounded-tr-[12px] border-l-4 border-[#277C78]";
+    "bg-background rounded-br-[12px] rounded-tr-[12px] border-l-4 border-secondary-green";
 
   return (
     <Link href={url}>
       <li
-        className={`px-[32px] py-[16px] w-[90%] flex flex-row gap-4 ${
+        className={`${
+          isMinimized ? "px-0 justify-center w-[90%]" : "px-[32px] w-[90%]"
+        } py-[16px] flex flex-row gap-4 ${
           isActive ? activeItem : inactiveItem
         }`}
       >
@@ -72,37 +78,63 @@ function DesktopNavItem({
           width="24"
           height="24"
         />
-        <p className={isActive ? activeLabel : inactiveLabel}>{label}</p>
+        {!isMinimized && (
+          <p className={isActive ? activeLabel : inactiveLabel}>{label}</p>
+        )}
       </li>
     </Link>
   );
 }
 
 export default function Navigation() {
+  const { isMinimized, toggleMinimize } = useNavigation();
+
   return (
     <>
-      <nav className="hidden lg:block fixed w-[300px] h-screen bg-black rounded-tr-[12px] rounded-br-[12px]">
-        <Image
-          src={"/images/logo-large.svg"}
-          alt="Logo"
-          className="mx-[32px] my-[40px]"
-          width="121"
-          height="22"
-        />
+      <nav
+        className={`hidden lg:block fixed h-screen bg-foreground rounded-tr-[12px] rounded-br-[12px] transition-all duration-300 ${
+          isMinimized ? "w-[88px]" : "w-[300px]"
+        }`}
+      >
+        {isMinimized ? (
+          <Image
+            src={"/images/logo-small.svg"}
+            alt="f logo"
+            className="mx-[32px] my-[40px]"
+            width="22"
+            height="22"
+          />
+        ) : (
+          <Image
+            src={"/images/logo-large.svg"}
+            alt="finance logo"
+            className="mx-[32px] my-[40px]"
+            width="121"
+            height="22"
+          />
+        )}
         <ul>
           {links.map((l) => (
-            <DesktopNavItem key={l.url} item={l} />
+            <DesktopNavItem key={l.url} item={l} isMinimized={isMinimized} />
           ))}
         </ul>
 
-        <li className="flex flex-row gap-4 absolute left-[32px] bottom-[100px]">
+        <li
+          className={`flex flex-row gap-4 absolute bottom-[100px] cursor-pointer ${
+            isMinimized ? "left-0 justify-center w-full" : "left-[32px]"
+          }`}
+          onClick={toggleMinimize}
+        >
           <Image
             src={"/images/icon-minimize-menu.svg"}
-            alt="Icon"
+            alt="Minimize Menu"
             width="24"
             height="24"
+            className={`transition-transform duration-300 ${isMinimized ? "rotate-180" : ""}`}
           />
-          <p className="text-[#B3B3B3] text-preset-3">Minimize Menu</p>
+          {!isMinimized && (
+            <p className="text-grey-300 text-preset-3">Minimize Menu</p>
+          )}
         </li>
       </nav>
 

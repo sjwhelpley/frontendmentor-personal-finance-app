@@ -33,6 +33,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-beige-100: var(--beige-100);
+  --color-beige-500: var(--beige-500);
+  --color-grey-100: var(--grey-100);
+  --color-grey-300: var(--grey-300);
+  --color-grey-500: var(--grey-500);
+  --color-grey-900: var(--grey-900);
   --color-secondary-green: var(--secondary-green);
   --color-secondary-yellow: var(--secondary-yellow);
   --color-secondary-cyan: var(--secondary-cyan);

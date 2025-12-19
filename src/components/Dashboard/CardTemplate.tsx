@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,10 +18,10 @@ export default function CardTemplate({
   return (
     <div className="bg-white text-black w-full rounded-[12px] p-[24px]">
       <div className="flex flex-row justify-between items-center h-fit">
-        <h1 className="text-preset-2 text-[#201F24]">{titleLabel}</h1>
+        <h2 className="text-preset-2 text-grey-900">{titleLabel}</h2>
         <Link
           href={buttonClickPath}
-          className="text-preset-4 text-[#696868] flex flex-row items-center"
+          className="text-preset-4 text-grey-500 flex flex-row items-center"
         >
           {buttonLabel}{" "}
           <Image
