@@ -2,7 +2,8 @@
 
 import { useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
-import Image from "next/image";
+
+import IconRecurringBills from "@/assets/images/icon-recurring-bills.svg";
 
 export default function TotalBillsCard() {
   const bills = useAppSelector((state: RootState) => state.finance.bills);
@@ -14,12 +15,7 @@ export default function TotalBillsCard() {
 
   return (
     <div className="bg-grey-900 text-white w-full md:w-1/2 lg:w-full p-[24px] rounded-[12px] flex flex-col gap-[32px]">
-      <Image
-        src="/images/icon-recurring-bills.svg"
-        alt="Bill icon"
-        width="40"
-        height="40"
-      />
+      <IconRecurringBills className="w-[40px] h-[40px] [&_path]:fill-white" />
 
       <div className="w-full">
         <p className="text-preset-4">Total Bills</p>

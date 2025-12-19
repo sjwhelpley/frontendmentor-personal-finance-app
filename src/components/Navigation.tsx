@@ -1,39 +1,42 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { useNavigation } from "@/contexts/NavigationContext";
 
+import IconNavOverview from "@/assets/images/icon-nav-overview.svg";
+import IconNavTransactions from "@/assets/images/icon-nav-transactions.svg";
+import IconNavBudgets from "@/assets/images/icon-nav-budgets.svg";
+import IconNavPots from "@/assets/images/icon-nav-pots.svg";
+import IconNavRecurringBills from "@/assets/images/icon-nav-recurring-bills.svg";
+import LogoSmall from "@/assets/images/logo-small.svg";
+import LogoLarge from "@/assets/images/logo-large.svg";
+import IconMinimizeMenu from "@/assets/images/icon-minimize-menu.svg";
+
 const links = [
   {
-    inactiveIcon: "/images/icon-nav-overview.svg",
-    activeIcon: "/images/icon-nav-overview-active.svg",
+    Icon: IconNavOverview,
     label: "Overview",
     url: "/",
   },
   {
-    inactiveIcon: "/images/icon-nav-transactions.svg",
-    activeIcon: "/images/icon-nav-overview-active.svg",
+    Icon: IconNavTransactions,
     label: "Transactions",
     url: "/transactions",
   },
   {
-    inactiveIcon: "/images/icon-nav-budgets.svg",
-    activeIcon: "/images/icon-nav-overview-active.svg",
+    Icon: IconNavBudgets,
     label: "Budgets",
     url: "/budgets",
   },
   {
-    inactiveIcon: "/images/icon-nav-pots.svg",
-    activeIcon: "/images/icon-nav-overview-active.svg",
+    Icon: IconNavPots,
     label: "Pots",
     url: "/pots",
   },
   {
-    inactiveIcon: "/images/icon-nav-recurring-bills.svg",
-    activeIcon: "/images/icon-nav-overview-active.svg",
+    Icon: IconNavRecurringBills,
     label: "Recurring Bills",
     url: "/bills",
   },
@@ -44,14 +47,13 @@ function DesktopNavItem({
   isMinimized,
 }: {
   item: {
-    inactiveIcon: string;
-    activeIcon: string;
+    Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     url: string;
     label: string;
   };
   isMinimized: boolean;
 }) {
-  const { activeIcon, inactiveIcon, url, label } = item;
+  const { Icon, url, label } = item;
   const pathname = usePathname();
 
   const isActive = pathname === url;
@@ -68,15 +70,14 @@ function DesktopNavItem({
       <li
         className={`${
           isMinimized ? "px-0 justify-center w-[90%]" : "px-[32px] w-[90%]"
-        } py-[16px] flex flex-row gap-4 ${
+        } py-[16px] flex flex-row items-center gap-4 ${
           isActive ? activeItem : inactiveItem
         }`}
       >
-        <Image
-          src={isActive ? activeIcon : inactiveIcon}
-          alt="Icon"
-          width="24"
-          height="24"
+        <Icon
+          className={`flex-shrink-0 ${
+            isActive ? "[&_path]:fill-[#277C78]" : "[&_path]:fill-[#b3b3b3]"
+          }`}
         />
         {!isMinimized && (
           <p className={isActive ? activeLabel : inactiveLabel}>{label}</p>
@@ -97,20 +98,14 @@ export default function Navigation() {
         }`}
       >
         {isMinimized ? (
-          <Image
-            src={"/images/logo-small.svg"}
-            alt="f logo"
-            className="mx-[32px] my-[40px]"
-            width="22"
-            height="22"
+          <LogoSmall
+            className="mx-[32px] my-[40px] w-[22px] h-[22px] [&_path]:fill-white"
+            aria-label="f logo"
           />
         ) : (
-          <Image
-            src={"/images/logo-large.svg"}
-            alt="finance logo"
-            className="mx-[32px] my-[40px]"
-            width="121"
-            height="22"
+          <LogoLarge
+            className="mx-[32px] my-[40px] w-[121px] h-[22px] [&_path]:fill-white"
+            aria-label="finance logo"
           />
         )}
         <ul>
@@ -120,17 +115,16 @@ export default function Navigation() {
         </ul>
 
         <li
-          className={`flex flex-row gap-4 absolute bottom-[100px] cursor-pointer ${
+          className={`flex flex-row items-center gap-4 absolute bottom-[100px] cursor-pointer ${
             isMinimized ? "left-0 justify-center w-full" : "left-[32px]"
           }`}
           onClick={toggleMinimize}
         >
-          <Image
-            src={"/images/icon-minimize-menu.svg"}
-            alt="Minimize Menu"
-            width="24"
-            height="24"
-            className={`transition-transform duration-300 ${isMinimized ? "rotate-180" : ""}`}
+          <IconMinimizeMenu
+            className={`flex-shrink-0 transition-transform duration-300 [&_path]:fill-[#b3b3b3] ${
+              isMinimized ? "rotate-180" : ""
+            }`}
+            aria-label="Minimize Menu"
           />
           {!isMinimized && (
             <p className="text-grey-300 text-preset-3">Minimize Menu</p>
