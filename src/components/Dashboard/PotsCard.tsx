@@ -40,8 +40,8 @@ export default function PotsCard() {
       buttonLabel="See Details"
       buttonClickPath="/pots"
     >
-      <div className="mt-[20px] flex flex-row gap-[20px]">
-        <div className="w-1/2 rounded-[12px] bg-background p-[16px] flex flex-row gap-[16px]">
+      <div className="mt-[20px] flex flex-col sm:flex-row gap-[20px]">
+        <div className="w-full rounded-[12px] bg-background p-[16px] flex flex-row gap-[16px]">
           <Image
             src="/images/icon-pot.svg"
             alt="Money jar"
@@ -54,7 +54,7 @@ export default function PotsCard() {
           </div>
         </div>
 
-        <div className="w-1/2 grid grid-rows-2 grid-flow-col gap-[16px]">
+        <div className="w-full grid grid-rows-2 grid-flow-col gap-[16px]">
           {visiblePots.map((s) => (
             <PotSection key={s.name} section={s} />
           ))}

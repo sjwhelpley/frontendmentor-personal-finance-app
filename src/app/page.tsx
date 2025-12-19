@@ -9,14 +9,14 @@ export default function Home() {
     <>
       <OverviewSection />
 
-      <div className="col-span-8 lg:col-span-7">
+      <div className="col-span-12 lg:col-span-7">
         <PotsCard />
         <div className="mt-[24px]">
           <TransactionsCard />
         </div>
       </div>
 
-      <div className="col-span-8 lg:col-span-5 h-fit">
+      <div className="col-span-12 mt-[24px] lg:mt-0 lg:col-span-5 h-fit">
         <CardTemplate
           titleLabel="Budgets"
           buttonLabel="See Details"

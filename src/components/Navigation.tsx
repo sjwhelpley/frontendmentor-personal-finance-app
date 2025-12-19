@@ -87,6 +87,50 @@ function DesktopNavItem({
   );
 }
 
+function MobileNavItem({
+  item,
+}: {
+  item: {
+    Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+    url: string;
+    label: string;
+  };
+}) {
+  const { Icon, url, label } = item;
+  const pathname = usePathname();
+
+  const isActive = pathname === url;
+
+  const inactiveItem = "border-b-4 border-foreground";
+  const activeItem =
+    "bg-background rounded-tl-[12px] rounded-tr-[12px] border-b-4 border-secondary-green";
+
+  return (
+    <Link href={url} className="flex-1 h-full">
+      <li className={`flex flex-col items-center justify-end gap-1 h-full`}>
+        <div
+          className={`flex flex-col items-center justify-center gap-1 h-full w-full ${
+            isActive ? activeItem : inactiveItem
+          }`}
+        >
+          <Icon
+            className={`flex-shrink-0 ${
+              isActive ? "[&_path]:fill-[#277C78]" : "[&_path]:fill-[#b3b3b3]"
+            }`}
+          />
+          <p
+            className={`hidden md:block text-preset-5-bold ${
+              isActive ? "text-secondary-green" : "text-grey-300"
+            }`}
+          >
+            {label}
+          </p>
+        </div>
+      </li>
+    </Link>
+  );
+}
+
 export default function Navigation() {
   const { isMinimized, toggleMinimize } = useNavigation();
 
@@ -132,7 +176,13 @@ export default function Navigation() {
         </li>
       </nav>
 
-      <nav className="block lg:hidden"></nav>
+      <nav className="block lg:hidden fixed bottom-0 left-0 right-0 h-[75px] bg-grey-900">
+        <ul className="flex flex-row items-center justify-around gap-4 h-full px-[40px] pt-[8px]">
+          {links.map((l) => (
+            <MobileNavItem key={l.url} item={l} />
+          ))}
+        </ul>
+      </nav>
     </>
   );
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
+import { formatCurrency } from "@/utils/utils";
 
 import CardTemplate from "./CardTemplate";
 
@@ -44,14 +45,8 @@ export default function TransactionsCard() {
               }}
             >
               {amount < 0
-                ? `-${Math.abs(amount).toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}`
-                : `+${amount.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}`}
+                ? `-${formatCurrency(Math.abs(amount))}`
+                : `+${formatCurrency(amount)}`}
             </p>
             <p className="text-preset-5 text-grey-500">
               {new Date(date).toLocaleDateString("en-GB", {
@@ -80,7 +75,11 @@ export default function TransactionsCard() {
     >
       <div className="mt-[20px] w-full">
         {visibleTransactions.map((t, index) => (
-          <Transaction key={t.date} transaction={t} lastItem={index === visibleTransactions.length - 1} />
+          <Transaction
+            key={t.date}
+            transaction={t}
+            lastItem={index === visibleTransactions.length - 1}
+          />
         ))}
       </div>
     </CardTemplate>
