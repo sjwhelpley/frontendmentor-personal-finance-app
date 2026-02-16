@@ -27,10 +27,18 @@ export interface Pot {
   theme: string;
 }
 
-export interface Bill {
+export interface BillSummary {
   name: string;
   amount: number;
   numberOfBills: number;
+}
+
+export interface Bill {
+  title: string;
+  status: string;
+  frequency: string;
+  dueDate: number;
+  amount: number;
 }
 
 export interface FinanceState {
@@ -38,5 +46,6 @@ export interface FinanceState {
   transactions: Transaction[];
   budgets: Budget[];
   pots: Pot[];
+  billsSummary: BillSummary[];
   bills: Bill[];
 }

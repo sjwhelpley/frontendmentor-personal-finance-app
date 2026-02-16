@@ -6,11 +6,13 @@ import { RootState } from "@/store/store";
 import IconRecurringBills from "@/assets/images/icon-recurring-bills.svg";
 
 export default function TotalBillsCard() {
-  const bills = useAppSelector((state: RootState) => state.finance.bills);
+  const billsSummary = useAppSelector(
+    (state: RootState) => state.finance.billsSummary
+  );
   const paidBills =
-    bills.find((bill) => bill.name === "Paid Bills")?.amount ?? 0;
+    billsSummary.find((bill) => bill.name === "Paid Bills")?.amount ?? 0;
   const totalUpcoming =
-    bills.find((bill) => bill.name === "Total Upcoming")?.amount ?? 0;
+    billsSummary.find((bill) => bill.name === "Total Upcoming")?.amount ?? 0;
   const totalBills = paidBills + totalUpcoming;
 
   return (

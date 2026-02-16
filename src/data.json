@@ -456,7 +456,7 @@
       "theme": "#826CB0"
     }
   ],
-  "bills": [
+  "billsSummary": [
     {
       "name": "Paid Bills",
       "amount": 190.0,
@@ -471,6 +471,22 @@
       "name": "Due Soon",
       "amount": 59.98,
       "numberOfBills": 2
+    }
+  ],
+  "bills": [
+    {
+      "title": "Spark Electric Solution",
+      "status": "paid",
+      "frequency": "monthly",
+      "dueDate": 2,
+      "amount": 100.0
+    },
+    {
+      "title": "Serenity Spa & Wellness",
+      "status": "upcoming",
+      "frequency": "monthly",
+      "dueDate": 3,
+      "amount": 30.0
     }
   ]
 }
