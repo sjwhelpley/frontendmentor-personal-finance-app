@@ -135,7 +135,7 @@ export default function DonutChart({
       </svg>
 
       {/* Center text */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
         <p className="text-preset-1">${totalSpent.toFixed(0)}</p>
         <p className="text-preset-4 text-grey-500">
           of ${totalLimit.toFixed(0)} limit

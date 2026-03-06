@@ -176,7 +176,7 @@ export default function Navigation() {
         </li>
       </nav>
 
-      <nav className="block lg:hidden fixed bottom-0 left-0 right-0 h-[75px] bg-grey-900">
+      <nav className="block lg:hidden fixed bottom-0 left-0 right-0 h-[75px] bg-grey-900 absolute z-10">
         <ul className="flex flex-row items-center justify-around gap-4 h-full px-[40px] pt-[8px]">
           {links.map((l) => (
             <MobileNavItem key={l.url} item={l} />
