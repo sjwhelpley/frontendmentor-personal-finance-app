@@ -11,7 +11,11 @@ export default function BillsTable() {
   return (
     <div className="col-span-12 lg:col-span-8 h-fit mt-[24px] bg-white p-[32px] rounded-[12px]">
       <Table
-        columns={["Bill Title", "Due Date", "Amount"]}
+        columns={[
+          { name: "Bill Title", className: "text-left" },
+          { name: "Due Date", className: "text-left" },
+          { name: "Amount", className: "text-right" },
+        ]}
         data={bills}
         getRow={() => null}
       />
