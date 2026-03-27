@@ -28,8 +28,10 @@ export default function RootLayout({
       <body className={`${publicSans.variable} antialiased`}>
         <StoreProvider>
           <NavigationProvider>
-            <Navigation />
-            <MainContent>{children}</MainContent>
+            <div className="w-full min-w-0">
+              <Navigation />
+              <MainContent>{children}</MainContent>
+            </div>
           </NavigationProvider>
         </StoreProvider>
       </body>
