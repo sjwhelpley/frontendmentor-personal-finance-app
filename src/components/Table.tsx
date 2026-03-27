@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Button from "./Button";
+
+import Pagination from "@/design-system/Pagination/Pagination";
 
 const NUM_PER_PAGE = 10;
 
@@ -105,51 +106,12 @@ export default function Table({
         <tfoot className="block md:table-footer-group w-full">
           <tr className="block md:table-row w-full">
             <td colSpan={columns.length} className="block md:table-cell w-full">
-              <div className="flex flex-row justify-between items-center pt-[24px]">
-                <Button
-                  onClick={() => setPage((p) => Math.max(1, p - 1))}
-                  variant="outlined"
-                  disabled={page === 1}
-                  size="small"
-                  className="md:w-auto md:h-auto md:py-[8px] md:px-[16px]"
-                >
-                  <span className="md:hidden">←</span>
-                  <span className="hidden md:inline">← Prev</span>
-                </Button>
-
-                <div className="flex flex-row gap-[8px] items-center">
-                  {paginationRange.map((item, index) =>
-                    item === "..." ? (
-                      <span
-                        key={`ellipsis-${index}`}
-                        className="px-[8px] text-grey-500 text-preset-4"
-                      >
-                        ...
-                      </span>
-                    ) : (
-                      <Button
-                        key={item}
-                        label={String(item)}
-                        onClick={() => setPage(item)}
-                        variant="outlined"
-                        size="small"
-                        active={page === item}
-                      />
-                    ),
-                  )}
-                </div>
-
-                <Button
-                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                  variant="outlined"
-                  disabled={page === totalPages}
-                  size="small"
-                  className="md:w-auto md:h-auto md:py-[8px] md:px-[16px]"
-                >
-                  <span className="md:hidden">→</span>
-                  <span className="hidden md:inline">Next →</span>
-                </Button>
-              </div>
+              <Pagination
+                page={page}
+                setPage={setPage}
+                paginationRange={paginationRange}
+                totalPages={totalPages}
+              />
             </td>
           </tr>
         </tfoot>

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import IconCaretDown from "@/assets/images/icon-caret-down.svg";
 import { ReactNode, useRef, useState, useEffect } from "react";
 
 export type SelectOption = { value: string; label: string };
@@ -76,12 +76,9 @@ export default function Select({
             <span className="flex-1 min-w-0 text-preset-4 text-grey-900 truncate">
               {selectedLabel}
             </span>
-            <Image
-              src="/images/icon-caret-down.svg"
-              alt=""
-              width={12}
-              height={6}
-              className={`shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`}
+            <IconCaretDown
+              className={`w-3 h-[6px] shrink-0 text-grey-900 transition-transform ${isOpen ? "rotate-180" : ""}`}
+              aria-hidden
             />
           </button>
           <button
@@ -107,12 +104,9 @@ export default function Select({
           <span className="flex-1 min-w-0 text-preset-4 text-grey-900 truncate">
             {selectedLabel}
           </span>
-          <Image
-            src="/images/icon-caret-down.svg"
-            alt=""
-            width={12}
-            height={6}
-            className={`shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          <IconCaretDown
+            className={`w-3 h-[6px] shrink-0 text-grey-900 transition-transform ${isOpen ? "rotate-180" : ""}`}
+            aria-hidden
           />
         </button>
       )}

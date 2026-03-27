@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-
+import IconPot from "@/assets/images/icon-pot.svg";
 import { RootState } from "@/store/store";
 import { useAppSelector } from "@/store/hooks";
 
@@ -42,12 +41,7 @@ export default function PotsCard() {
     >
       <div className="mt-[20px] flex flex-col sm:flex-row gap-[20px]">
         <div className="w-full rounded-[12px] bg-background p-[16px] flex flex-row gap-[16px]">
-          <Image
-            src="/images/icon-pot.svg"
-            alt="Money jar"
-            width="40"
-            height="40"
-          />
+          <IconPot className="w-10 h-10 shrink-0" aria-hidden />
           <div>
             <p className="text-grey-500 text-preset-4">Total Saved</p>
             <p className="text-preset-1 mt-[12px]">${totalSaved}</p>
