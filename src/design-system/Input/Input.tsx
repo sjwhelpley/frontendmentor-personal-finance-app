@@ -2,7 +2,7 @@
 
 import IconCaretDown from "@/assets/images/icon-caret-down.svg";
 import IconSearch from "@/assets/images/icon-search.svg";
-import { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
 type FieldState = "default" | "focused" | "error";
 
@@ -21,6 +21,7 @@ export default function Input({
   disabled = false,
   readOnly = false,
   autoComplete,
+  inputMode,
   className = "",
   inputClassName = "",
 }: {
@@ -38,6 +39,7 @@ export default function Input({
   disabled?: boolean;
   readOnly?: boolean;
   autoComplete?: string;
+  inputMode?: HTMLAttributes<HTMLInputElement>["inputMode"];
   className?: string;
   inputClassName?: string;
 }) {
@@ -93,6 +95,7 @@ export default function Input({
           disabled={disabled}
           readOnly={readOnly}
           autoComplete={autoComplete}
+          inputMode={inputMode}
           className={`flex-1 min-w-0 text-preset-4 text-grey-900 placeholder:text-beige-500 bg-transparent border-none outline-none ${inputClassName}`}
         />
         {renderTrailingIcon()}

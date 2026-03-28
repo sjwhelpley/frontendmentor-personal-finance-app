@@ -1,6 +1,7 @@
 "use client";
 
 import IconCaretDown from "@/assets/images/icon-caret-down.svg";
+import IconSelect from "@/assets/images/icon-selected.svg";
 import { ReactNode, useRef, useState, useEffect } from "react";
 
 export type SelectOption = {
@@ -75,7 +76,9 @@ export default function Select({
           {label}
         </span>
       )}
-      <div className="relative shrink-0">
+      <div
+        className={`relative min-w-0 ${width === "w-full" ? "w-full" : "shrink-0"}`}
+      >
         {customTrigger != null ? (
           <>
             <button
@@ -176,7 +179,7 @@ export default function Select({
                   <span className="flex items-center gap-3 min-w-0">
                     {(opt.colorClassName || opt.color) && (
                       <span
-                        className={`w-4 h-4 rounded-full shrink-0 ${opt.colorClassName ?? ""}`}
+                        className={`w-4 h-4 rounded-full shrink-0 ${opt.colorClassName ?? ""} ${isDisabled ? "opacity-50" : ""}`}
                         style={
                           opt.color ? { backgroundColor: opt.color } : undefined
                         }
@@ -188,10 +191,7 @@ export default function Select({
                   {(opt.colorClassName || opt.color) && (
                     <>
                       {isSelected ? (
-                        <span
-                          className="w-5 h-5 rounded-full bg-secondary-green shrink-0"
-                          aria-hidden="true"
-                        />
+                        <IconSelect aria-hidden="true" />
                       ) : isDisabled ? (
                         <span className="text-preset-4 text-grey-500 shrink-0">
                           {opt.disabledLabel ?? "Already used"}

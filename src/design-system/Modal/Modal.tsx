@@ -25,6 +25,7 @@ type ModalPrimaryFooter = {
   footer: "primary";
   primaryLabel: string;
   onPrimaryAction: () => void;
+  primaryDisabled?: boolean;
 };
 
 type ModalDestructiveFooter = {
@@ -127,6 +128,7 @@ export default function Modal(props: ModalProps) {
               onClick={props.onPrimaryAction}
               variant="primary"
               className="w-full text-center"
+              disabled={props.primaryDisabled ?? false}
             />
           ) : (
             <>

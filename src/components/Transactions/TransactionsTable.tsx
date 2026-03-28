@@ -5,22 +5,13 @@ import { useMemo, useState } from "react";
 import IconFilterMobile from "@/assets/images/icon-filter-mobile.svg";
 import IconSortMobile from "@/assets/images/icon-sort-mobile.svg";
 import Table from "@/components/Table";
-import Input from "@/design-system/Input";
-import Select, { SelectOption } from "@/design-system/Select";
+import { Input, Select } from "@/design-system";
 import { useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
 import { Transaction as TransactionType } from "@/types/finance";
 
 import Transaction from "./Transaction";
-
-const SORT_OPTIONS: SelectOption[] = [
-  { value: "latest", label: "Latest" },
-  { value: "oldest", label: "Oldest" },
-  { value: "name-asc", label: "A to Z" },
-  { value: "name-desc", label: "Z to A" },
-  { value: "amount-desc", label: "Highest" },
-  { value: "amount-asc", label: "Lowest" },
-];
+import { CATEGORY_OPTIONS, SORT_OPTIONS } from "./transactionTableOptions";
 
 export default function TransactionsTable() {
   const transactions = useAppSelector(
@@ -30,16 +21,6 @@ export default function TransactionsTable() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("latest");
   const [categoryFilter, setCategoryFilter] = useState("all");
-
-  const categoryOptions: SelectOption[] = useMemo(() => {
-    const categories = Array.from(
-      new Set(transactions.map((t) => t.category)),
-    ).sort();
-    return [
-      { value: "all", label: "All Transactions" },
-      ...categories.map((c) => ({ value: c, label: c })),
-    ];
-  }, [transactions]);
 
   const filteredAndSortedTransactions = useMemo(() => {
     let list = transactions;
@@ -87,12 +68,12 @@ export default function TransactionsTable() {
 
   return (
     <div className="mt-[32px] col-span-full bg-white text-black w-full rounded-[12px] p-[20px] md:p-[24px] overflow-hidden">
-      <div className="flex flex-row flex-nowrap items-center gap-3 sm:gap-4 mb-6">
+      <div className="flex flex-row flex-nowrap justify-between items-center gap-3 sm:gap-4 mb-6">
         <Input
           value={searchQuery}
           onChange={setSearchQuery}
           placeholder="Search transaction"
-          className="flex-1 min-w-0"
+          className="flex-1 min-w-0 max-w-[320px]"
           trailingIcon="search"
         />
         <div className="flex flex-nowrap items-center gap-3 md:gap-6 shrink-0">
@@ -110,7 +91,7 @@ export default function TransactionsTable() {
           <Select
             label="Category"
             value={categoryFilter}
-            options={categoryOptions}
+            options={CATEGORY_OPTIONS}
             onChange={setCategoryFilter}
             width="min-w-[175px]"
             customTrigger={
