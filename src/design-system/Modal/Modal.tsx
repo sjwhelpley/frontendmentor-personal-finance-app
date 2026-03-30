@@ -1,15 +1,17 @@
 "use client";
 
-import Button from "@/design-system/Button";
-import IconCloseModal from "@/assets/images/icon-close-modal.svg";
 import {
   ReactNode,
   useCallback,
   useEffect,
   useId,
+  useRef,
   useState,
 } from "react";
 import { createPortal } from "react-dom";
+
+import Button from "@/design-system/Button";
+import IconCloseModal from "@/assets/images/icon-close-modal.svg";
 
 type ModalBaseProps = {
   open: boolean;
@@ -51,6 +53,8 @@ export default function Modal(props: ModalProps) {
 
   const titleId = useId();
   const [mounted, setMounted] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const lastFocusedRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -65,12 +69,72 @@ export default function Modal(props: ModalProps) {
     };
   }, [open]);
 
+  const getFocusableElements = useCallback(() => {
+    if (!dialogRef.current) return [];
+    const selector = [
+      "a[href]",
+      "button:not([disabled])",
+      "input:not([disabled])",
+      "select:not([disabled])",
+      "textarea:not([disabled])",
+      "[tabindex]:not([tabindex='-1'])",
+    ].join(",");
+    return Array.from(
+      dialogRef.current.querySelectorAll<HTMLElement>(selector),
+    );
+  }, []);
+
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (e.key !== "Tab") return;
+
+      const focusables = getFocusableElements();
+      if (focusables.length === 0) {
+        e.preventDefault();
+        dialogRef.current?.focus();
+        return;
+      }
+
+      const active = document.activeElement as HTMLElement | null;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const isInsideDialog = !!(active && dialogRef.current?.contains(active));
+
+      if (!isInsideDialog) {
+        e.preventDefault();
+        first.focus();
+        return;
+      }
+
+      if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+        return;
+      }
+
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      }
     },
-    [onClose],
+    [getFocusableElements, onClose],
   );
+
+  useEffect(() => {
+    if (!open) return;
+    lastFocusedRef.current = document.activeElement as HTMLElement | null;
+    const focusables = getFocusableElements();
+    (focusables[0] ?? dialogRef.current)?.focus();
+    return () => {
+      lastFocusedRef.current?.focus();
+    };
+  }, [open, getFocusableElements]);
 
   useEffect(() => {
     if (!open) return;
@@ -93,6 +157,8 @@ export default function Modal(props: ModalProps) {
         onClick={onClose}
       />
       <div
+        ref={dialogRef}
+        tabIndex={-1}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
